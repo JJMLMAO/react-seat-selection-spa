@@ -1,8 +1,45 @@
-
 .section-div {
-    border: 1px solid black;
-    padding: 6px 6px;
-    margin: 12px;
-  
-   
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-4);
+    margin: 0 0 var(--space-4);
 }
+
+.section-div:last-child {
+    margin-bottom: 0;
+}
+
+/* Header strip: a tier-coloured marker, the section name, and a hairline
+   separating it from the seats. */
+.section-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.section-name::before {
+    content: "";
+    width: 3px;
+    height: 0.875rem;
+    border-radius: 2px;
+    background: var(--tier, var(--border-strong));
+}
+
+/* Sections render in a fixed order (alpha, beta, charlie, delta) as
+   siblings, so position maps to price tier without a data attribute. */
+.section-div:nth-of-type(1) { --tier: var(--tier-alpha); }
+.section-div:nth-of-type(2) { --tier: var(--tier-beta); }
+.section-div:nth-of-type(3) { --tier: var(--tier-charlie); }
+.section-div:nth-of-type(4) { --tier: var(--tier-delta); }

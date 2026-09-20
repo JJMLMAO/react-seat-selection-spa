@@ -3,17 +3,14 @@ import "./styled.css"
 import Seat from "../Seat"
 
 export default function SectionRow({rows}: {rows: Row[]}) {
-    console.log("row: ", rows)
     return (
         <>
             {rows.map((row) => {
                 return (
                     <div className="row-div" key={row.id}>
-                        <div>
-                        {row.label}-{row.id}
-
+                        <div className="row-label">
+                            {row.label}
                         </div>
-                        {/* seats component here */}
                         <Seat seats={row.seats} />
                     </div>
                 )

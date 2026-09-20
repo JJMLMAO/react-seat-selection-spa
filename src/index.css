@@ -1,0 +1,82 @@
+/* ---------------------------------------------------------------
+   Design tokens
+   Every colour, size and radius in the app resolves to a value in
+   this block, so retheming is an edit here rather than a sweep
+   through the component stylesheets.
+   --------------------------------------------------------------- */
+:root {
+    /* canvas */
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-sunken: #eef1f5;
+    --border: #e3e7ed;
+    --border-strong: #ccd2dc;
+
+    /* type */
+    --text: #1b1f27;
+    --text-muted: #69717f;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    /* seat — one neutral resting look; states come in a later pass */
+    /* Sized so a full 25-seat row fits beside the pane without scrolling:
+       78rem container - 3rem padding - 18rem pane - 1.5rem gap - 2rem card
+       padding - 2rem label gutter = 51.5rem for 25 seats + 24 gaps.
+       25 x 1.75 + 24 x 0.25 = 49.75rem. Shrink this before widening the
+       pane, or the row starts scrolling again. */
+    --seat-size: 1.75rem;
+    --seat-bg: #eef1f5;
+    --seat-border: #d7dde5;
+    --seat-text: #5a626f;
+
+    /* price tiers, mapped to sections in Section/styled.css */
+    --tier-alpha: #6366f1;
+    --tier-beta: #0ea5e9;
+    --tier-charlie: #10b981;
+    --tier-delta: #f59e0b;
+
+    /* geometry */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* selection pane */
+    --pane-width: 18rem;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+
+    --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+    --shadow-md: 0 2px 4px rgb(16 24 40 / 0.04), 0 4px 12px rgb(16 24 40 / 0.08);
+}
+
+/* ---------------------------------------------------------------
+   Reset
+   --------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Token override rather than per-component rules: shrinking the seat
+   here narrows every row at once. Kept beside the definition so it can
+   never be beaten by stylesheet import order. */
+@media (max-width: 48rem) {
+    :root {
+        --seat-size: 1.5rem;
+    }
+}

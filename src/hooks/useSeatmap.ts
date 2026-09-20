@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from "react"
-import type { Seat, Seatmap } from "../types";
+import type { Seatmap } from "../types";
 import { collectUnavailable, flattenSeatMap, indexSeats } from "../helpers/seatmapHelpers"
 
 export function useSeatmap() {

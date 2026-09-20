@@ -1,12 +1,12 @@
 import type { Seat } from "../../types";
+import "./styled.css"
 
 export default function Seat({seats}: {seats: Seat[]}) {
-    console.log("seat: ", seats)
     return (
         <>
             {seats.map((seat) => {
                 return (
-                    <div key={seat.id}>
+                    <div className="seat" key={seat.id}>
                         {seat.number}
                     </div>
                 )

@@ -4,8 +4,6 @@ import SectionRow from "../Row"
 
 export default function SeatSection(props: SeatSectionProps) {
     const { sections } = props
-    console.log("sections: ", sections)
-
 
     return (
         <>

@@ -1,0 +1,32 @@
+/* A square with rounded corners that doubles as a centred slot for an
+   SVG icon. No state variants yet — every seat renders identically. */
+.seat {
+    width: var(--seat-size);
+    height: var(--seat-size);
+    flex: 0 0 auto;              /* never squashed by the flex row */
+
+    display: inline-flex;
+    align-items: center;         /* an icon dropped in lands dead centre */
+    justify-content: center;
+
+    background: var(--seat-bg);
+    border: 1px solid var(--seat-border);
+    border-radius: var(--radius-sm);
+
+    color: var(--seat-text);
+    font-size: 0.6875rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+
+    user-select: none;
+}
+
+/* Written ahead of the icon import: an <svg> dropped straight into the
+   seat scales and centres with no further CSS. currentColor means any
+   future recolouring of .seat recolours the icon with it. */
+.seat > svg {
+    display: block;
+    width: 62%;
+    height: 62%;
+    fill: currentColor;
+}

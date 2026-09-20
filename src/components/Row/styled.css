@@ -1,4 +1,25 @@
 .row-div {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.row-div + .row-div {
+    margin-top: var(--space-1);
+}
+
+/* Fixed width so the labels form a straight gutter down the left of the
+   section instead of shifting with the text. */
+.row-label {
+    flex: 0 0 auto;
+    width: 1.5rem;
+    margin-right: var(--space-2);
+    text-align: right;
+
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    user-select: none;
 }
