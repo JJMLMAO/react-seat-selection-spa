@@ -1,5 +1,5 @@
 /* A square with rounded corners that doubles as a centred slot for an
-   SVG icon. No state variants yet — every seat renders identically. */
+   SVG icon. This is the available seat; variants key off [data-status]. */
 .seat {
     width: var(--seat-size);
     height: var(--seat-size);
@@ -19,6 +19,7 @@
     font-variant-numeric: tabular-nums;
 
     user-select: none;
+    cursor: pointer;
 }
 
 /* Written ahead of the icon import: an <svg> dropped straight into the
@@ -29,4 +30,22 @@
     width: 62%;
     height: 62%;
     fill: currentColor;
+}
+
+/* Picked by the user. Listed before the unavailable rule so that, at equal
+   specificity, an unavailable seat can never look selected. */
+.seat[data-selected="true"] {
+    background: var(--seat-bg-selected);
+    border-color: var(--seat-bg-selected);
+    color: var(--seat-text-selected);
+}
+
+/* Sold, held, or otherwise not for sale. The seat stays clickable so hover
+   affordances remain possible; useSeatSelection drops the toggle instead.
+   color also recolours the icon via the currentColor rule above. */
+.seat[data-status="unavailable"] {
+    background: var(--seat-bg-unavailable);
+    border-color: var(--seat-border-unavailable);
+    color: var(--seat-text-unavailable);
+    cursor: not-allowed;
 }

@@ -1,10 +1,13 @@
 
 import './App.css'
 import { useSeatmap } from './hooks/useSeatmap'
+import { useSeatSelection } from './hooks/useSeatSelection'
 import SeatSection from './components/Section'
+import SidebarPanel from './components/SidebarPanel'
 
 function App() {
-  const { seatmap, allSeats, isLoading, error } = useSeatmap()
+  const { seatmap, allSeats, unavailableSeatIds, isLoading, error } = useSeatmap()
+  const { selectedIds, toggleSeat } = useSeatSelection(unavailableSeatIds)
 
   if (isLoading)
     return <p className="app-status">Loading seatmap ...</p>
@@ -24,13 +27,17 @@ function App() {
 
       <div className="app-body">
         <main className="seatmap">
-          <SeatSection sections={seatmap.sections} />
+          <SeatSection
+            sections={seatmap.sections}
+            selectedIds={selectedIds}
+            onToggle={toggleSeat}
+          />
         </main>
 
-        <aside>
-          <h2>Selection</h2>
-          <p className="aside-empty">No seats selected yet.</p>
-        </aside>
+        <SidebarPanel
+          selectedSeats={allSeats.filter(seat => selectedIds.has(seat.id))}
+          onRemove={toggleSeat}
+        />
       </div>
     </div>
   )

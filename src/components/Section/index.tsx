@@ -3,7 +3,7 @@ import "./styled.css"
 import SectionRow from "../Row"
 
 export default function SeatSection(props: SeatSectionProps) {
-    const { sections } = props
+    const { sections, selectedIds, onToggle } = props
 
     return (
         <>
@@ -15,7 +15,9 @@ export default function SeatSection(props: SeatSectionProps) {
                         </div>
                         <SectionRow
                             rows={section.rows}
-                        />       
+                            selectedIds={selectedIds}
+                            onToggle={onToggle}
+                        />
                     </div>
                 )
             })}

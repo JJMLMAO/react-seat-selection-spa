@@ -17,16 +17,27 @@
     --text-muted: #69717f;
     --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-    /* seat — one neutral resting look; states come in a later pass */
+    /* seat — a neutral resting look plus the unavailable variant */
     /* Sized so a full 25-seat row fits beside the pane without scrolling:
        78rem container - 3rem padding - 18rem pane - 1.5rem gap - 2rem card
        padding - 2rem label gutter = 51.5rem for 25 seats + 24 gaps.
        25 x 1.75 + 24 x 0.25 = 49.75rem. Shrink this before widening the
        pane, or the row starts scrolling again. */
     --seat-size: 1.75rem;
-    --seat-bg: #eef1f5;
+    --seat-bg: #ffffff;
     --seat-border: #d7dde5;
     --seat-text: #5a626f;
+
+    /* Sold or held: grey, desaturated, lower contrast than --seat-text so
+       the seat recedes instead of competing with the available ones. */
+    /* Aliased rather than a second copy of the hex: selection reads as the
+       app's one accent, so retheming the accent retheme selection with it. */
+    --seat-bg-selected: var(--tier-alpha);
+    --seat-text-selected: #ffffff;
+
+    --seat-bg-unavailable: #e6e9ee;
+    --seat-border-unavailable: #dfe3e9;
+    --seat-text-unavailable: #aab1bc;
 
     /* price tiers, mapped to sections in Section/styled.css */
     --tier-alpha: #6366f1;
