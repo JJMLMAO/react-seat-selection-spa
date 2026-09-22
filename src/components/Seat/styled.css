@@ -49,3 +49,13 @@
     color: var(--seat-text-unavailable);
     cursor: not-allowed;
 }
+
+/* Held by the user, then taken out from under them by a rival buyer. Last of
+   the three variants because all are `.seat[data-*]` — specificity ties, so
+   source order is what makes this beat both selected and unavailable. */
+.seat[data-conflicted="true"] {
+    background: var(--seat-bg-conflicted);
+    border-color: var(--seat-border-conflicted);
+    color: var(--seat-text-conflicted);
+    cursor: not-allowed;
+}

@@ -51,3 +51,39 @@ export function collectUnavailable(seats: SeatWithContext[]): Set<string> {
         seats.filter((seat) => seat.status === "unavailable").map((seat) => seat.id)
     )
 }
+
+/* ponytail: 0.3 is a demo knob, not a contention model. Uniform random over
+   353 free seats clashes roughly once every six minutes — too rare to show.
+   Raise it to make rival buyers more aggressive in a demo. */
+export const CLASH_BIAS = 0.3
+
+/**
+ * Chooses the seat a rival buyer takes next, or null if nothing is left.
+ *
+ * Weighted toward seats the user is holding, because the clash is the whole
+ * point of the simulation — picking uniformly would almost never hit them.
+ *
+ * Seats already taken are never re-taken, and a seat that has already clashed
+ * drops out of `contested`, so the simulator moves on to another of the user's
+ * seats rather than hammering the same one.
+ *
+ * `random` is injected so the weighting can be tested without a timer or a
+ * seeded global.
+ */
+export function pickSeatToTake(
+    allSeats: SeatWithContext[],
+    unavailableIds: Set<string>,
+    selectedIds: Set<string>,
+    random: () => number = Math.random,
+): string | null {
+    const contested = [...selectedIds].filter((id) => !unavailableIds.has(id))
+    if (contested.length > 0 && random() < CLASH_BIAS) {
+        return contested[Math.floor(random() * contested.length)]
+    }
+
+    const free = allSeats.filter(
+        (seat) => !unavailableIds.has(seat.id) && !selectedIds.has(seat.id)
+    )
+    if (free.length === 0) return null
+    return free[Math.floor(random() * free.length)].id
+}

@@ -35,6 +35,12 @@
     --seat-bg-selected: var(--tier-alpha);
     --seat-text-selected: #ffffff;
 
+    /* Lost to a rival buyer while still in the user's selection. The one
+       place red is used, because it is the one state that needs acting on. */
+    --seat-bg-conflicted: #fee2e2;
+    --seat-border-conflicted: #f87171;
+    --seat-text-conflicted: #b91c1c;
+
     --seat-bg-unavailable: #e6e9ee;
     --seat-border-unavailable: #dfe3e9;
     --seat-text-unavailable: #aab1bc;
