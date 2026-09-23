@@ -52,6 +52,21 @@ export function collectUnavailable(seats: SeatWithContext[]): Set<string> {
     )
 }
 
+/**
+ * Groups items into a Map, preserving first-seen key order.
+ *
+ * The sidebar groups the same seats two ways — by section for the list, by
+ * section-and-row for the receipt — so the reduce lives here once.
+ */
+export function groupBy<T, K>(items: T[], key: (item: T) => K): Map<K, T[]> {
+    return items.reduce((acc, item) => {
+        const k = key(item)
+        const group = acc.get(k) ?? []
+        group.push(item)
+        return acc.set(k, group)
+    }, new Map<K, T[]>())
+}
+
 /* ponytail: 0.3 is a demo knob, not a contention model. Uniform random over
    353 free seats clashes roughly once every six minutes — too rare to show.
    Raise it to make rival buyers more aggressive in a demo. */

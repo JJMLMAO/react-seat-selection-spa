@@ -15,6 +15,7 @@ export function useSeatSimulation(
     unavailableIds: Set<string>,
     selectedIds: Set<string>,
     onSeatTaken: (seatId: string) => void,
+    enabled = true,
 ) {
     /* The ticker reads state through a ref rather than a dep array: listing
        selectedIds as a dep would tear down and rebuild the interval on every
@@ -29,7 +30,10 @@ export function useSeatSimulation(
         latest.current = { allSeats, unavailableIds, selectedIds }
     })
 
-    const armed = selectedIds.size > 0
+    /* Rival buyers stop the moment the order is locked in — a booked seat
+       cannot be taken from under the user, and the map should sit still
+       while they read their confirmation. */
+    const armed = enabled && selectedIds.size > 0
 
     useEffect(() => {
         if (!armed) return

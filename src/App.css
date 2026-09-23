@@ -43,11 +43,30 @@
     position: sticky;
     top: var(--space-5);
 
+    /* Column so the seat list can take the slack and leave the checkout
+       footer sitting on the bottom edge whatever the list length. */
+    display: flex;
+    flex-direction: column;
+    min-height: var(--pane-min-height);
+
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     padding: var(--space-4);
+}
+
+/* Takes the slack, and scrolls rather than pushing the footer off the card
+   once the selection outgrows the pane. */
+.aside-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.aside-footer {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
 }
 
 .app aside h2 {
@@ -123,6 +142,91 @@
     font-weight: 700;
     font-size: 0.6875rem;
     letter-spacing: 0.04em;
+}
+
+.aside-order {
+    margin-bottom: var(--space-3);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.aside-order-head {
+    margin: 0 0 var(--space-1);
+    color: var(--tier-charlie);
+    font-weight: 700;
+    font-size: 0.8125rem;
+}
+
+.aside-order-line {
+    margin: 0;
+}
+
+.aside-order-total {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space-2) 0 0;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border);
+
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.8125rem;
+}
+
+.aside-warning {
+    margin: 0 0 var(--space-2);
+    color: var(--seat-text-conflicted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.checkout {
+    width: 100%;
+    padding: var(--space-3);
+    border: 0;
+    border-radius: var(--radius-md);
+
+    background: var(--seat-bg-selected);
+    color: var(--seat-text-selected);
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Muted rather than hidden: the user can still see what they are working
+   toward while the warning above says why it is unreachable. */
+.checkout:disabled {
+    background: var(--surface-sunken);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.checkout:not(:disabled):hover {
+    filter: brightness(1.08);
+}
+
+/* Destructive: it throws away a completed order. Only rendered once an order
+   exists, by which point Checkout is disabled and greyed, so red here is the
+   one live action rather than a second competing call to action. */
+.reset {
+    width: 100%;
+    margin-top: var(--space-2);
+    padding: var(--space-3);
+    border: 0;
+    border-radius: var(--radius-md);
+
+    background: var(--danger);
+    color: var(--danger-text);
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reset:hover {
+    background: var(--danger-strong);
 }
 
 .aside-empty {

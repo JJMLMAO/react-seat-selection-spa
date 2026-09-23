@@ -51,6 +51,11 @@
     --tier-charlie: #10b981;
     --tier-delta: #f59e0b;
 
+    /* destructive actions */
+    --danger: #dc2626;
+    --danger-strong: #b91c1c;
+    --danger-text: #ffffff;
+
     /* geometry */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -58,6 +63,9 @@
 
     /* selection pane */
     --pane-width: 18rem;
+    /* A floor, not a fixed height: the card stops shrink-wrapping one or two
+       rows, but still grows past this for a long selection. */
+    --pane-min-height: 24rem;
 
     --space-1: 0.25rem;
     --space-2: 0.5rem;

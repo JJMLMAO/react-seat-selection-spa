@@ -19,10 +19,17 @@ export function useSeatmap() {
     , [allSeats])
 
     const markUnavailable = useCallback((ids: string[]) => {
-        setUnavailableSeatIds((prev) => 
+        setUnavailableSeatIds((prev) =>
             new Set([...prev, ...ids])
         )
     }, [])
+
+    /* Undoes everything rival buyers took. seatmap itself is never mutated —
+       markUnavailable only ever touches the id set — so re-deriving from it
+       restores the JSON's original availability without a refetch. */
+    const resetAvailability = useCallback(() => {
+        setUnavailableSeatIds(collectUnavailable(allSeats))
+    }, [allSeats])
 
     // this will only run once on mount
     useEffect(() => {
@@ -47,5 +54,6 @@ export function useSeatmap() {
         isLoading,
         error,
         markUnavailable,
+        resetAvailability,
     }
 }

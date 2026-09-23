@@ -21,5 +21,7 @@ export function useSeatSelection(unavailableSeatIds: Set<string>) {
         })
     }, [unavailableSeatIds])
 
-    return { selectedIds, toggleSeat }
+    const clearSelection = useCallback(() => setSelectedIds(new Set()), [])
+
+    return { selectedIds, toggleSeat, clearSelection }
 }
