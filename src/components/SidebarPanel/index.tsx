@@ -1,16 +1,5 @@
-import type { SeatWithContext } from '../../types'
+import type { SidebarPanelProps } from './types'
 import { groupBy } from '../../helpers/seatmapHelpers'
-
-type SidebarPanelProps = {
-    selectedSeats: SeatWithContext[];
-    unavailableIds: Set<string>;
-    /* The booked order, or null while the user is still choosing. Non-null
-       locks the panel: nothing here can be changed after checkout. */
-    order: SeatWithContext[] | null;
-    onRemove: (seatId: string) => void;
-    onCheckout: () => void;
-    onReset: () => void;
-}
 
 export default function SidebarPanel({ selectedSeats, unavailableIds, order, onRemove, onCheckout, onReset }: SidebarPanelProps) {
     const bySection = groupBy(selectedSeats, (seat) => seat.sectionName)

@@ -23,12 +23,13 @@ export function useSeatSimulation(
        the simulator indefinitely. */
     const latest = useRef({ allSeats, unavailableIds, selectedIds })
 
-    /* No dep array: this runs after every render, keeping the ref current for
-       whenever the next tick fires. Writing it during render instead would be
-       a concurrent-rendering hazard — React may render without committing. */
+    /* Written in an effect rather than during render: assigning to a ref mid
+       render is a concurrent-rendering hazard, since React may render without
+       committing. The deps are exactly the three values being cached, so the
+       ref is refreshed when one of them changes and skipped otherwise. */
     useEffect(() => {
         latest.current = { allSeats, unavailableIds, selectedIds }
-    })
+    }, [allSeats, unavailableIds, selectedIds])
 
     /* Rival buyers stop the moment the order is locked in — a booked seat
        cannot be taken from under the user, and the map should sit still
