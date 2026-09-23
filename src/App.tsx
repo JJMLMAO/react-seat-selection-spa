@@ -46,13 +46,9 @@ function App() {
 
   return (
     <div className="app">
-      <header>
-        <h1>{seatmap.eventName}</h1>
-        <p>{seatmap.venue} · {allSeats.length} seats</p>
-      </header>
-
       <div className="app-body">
         <main className="seatmap">
+          <p className="screen">Screen</p>
           <SeatSection
             sections={seatmap.sections}
             selectedIds={selectedIds}

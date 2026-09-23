@@ -47,7 +47,7 @@ export default function SidebarPanel({ selectedSeats, unavailableIds, order, onR
                                             Row {rowLabel} · Seat {number} —{' '}
                                             {unavailableIds.has(id)
                                                 ? <span className="seat-taken">TAKEN</span>
-                                                : `$${price}`}
+                                                : `MYR ${price}`}
                                         </span>
                                         {order === null && (
                                             <button
@@ -81,7 +81,7 @@ export default function SidebarPanel({ selectedSeats, unavailableIds, order, onR
                         ))}
                         <p className="aside-order-total">
                             <span>Total paid</span>
-                            <span>${paid}</span>
+                            <span>MYR {paid}</span>
                         </p>
                     </div>
                 )}
@@ -102,7 +102,7 @@ export default function SidebarPanel({ selectedSeats, unavailableIds, order, onR
                        leaving a disabled button with no explanation. */
                     aria-describedby={conflicted.length > 0 ? 'checkout-blocked' : undefined}
                 >
-                    {order !== null ? 'Booked' : <>Checkout{total > 0 && ` · $${total}`}</>}
+                    {order !== null ? 'Booked' : <>Checkout{total > 0 && ` · MYR ${total}`}</>}
                 </button>
 
                 {/* Only offered once an order is locked in — before that the

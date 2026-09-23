@@ -37,9 +37,10 @@
     background: var(--tier, var(--border-strong));
 }
 
-/* Sections render in a fixed order (alpha, beta, charlie, delta) as
-   siblings, so position maps to price tier without a data attribute. */
-.section-div:nth-of-type(1) { --tier: var(--tier-alpha); }
-.section-div:nth-of-type(2) { --tier: var(--tier-beta); }
-.section-div:nth-of-type(3) { --tier: var(--tier-charlie); }
-.section-div:nth-of-type(4) { --tier: var(--tier-delta); }
+/* Keyed off the section id rather than sibling position: position-based
+   selectors silently re-map every tier the moment anything else is rendered
+   alongside the sections, as the screen above them now is. */
+.section-div[data-section="alpha"]   { --tier: var(--tier-alpha); }
+.section-div[data-section="beta"]    { --tier: var(--tier-beta); }
+.section-div[data-section="charlie"] { --tier: var(--tier-charlie); }
+.section-div[data-section="delta"]   { --tier: var(--tier-delta); }

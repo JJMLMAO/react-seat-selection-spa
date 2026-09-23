@@ -9,7 +9,7 @@ export default function SeatSection(props: SeatSectionProps) {
         <>
             {sections.map((section) => {
                 return (
-                    <div className="section-div" key={section.id}>
+                    <div className="section-div" data-section={section.id} key={section.id}>
                         <div className="section-name">
                             {section.name}
                         </div>
