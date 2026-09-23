@@ -37,7 +37,19 @@ export default function SidebarPanel({ selectedSeats, unavailableIds, order, onR
                     ? <p className="aside-empty">No seats selected yet.</p>
                     : [...bySection].map(([sectionName, seats]) => (
                         <section key={sectionName}>
-                            <h3>{sectionName}</h3>
+                            <h3>
+                                {sectionName}
+                                {order === null && (
+                                    <button
+                                        type="button"
+                                        className="section-clear"
+                                        onClick={() => seats.forEach(({ id }) => onRemove(id))}
+                                        aria-label={`Clear all ${seats.length} seats in ${sectionName}`}
+                                    >
+                                        Clear
+                                    </button>
+                                )}
+                            </h3>
                             <ul>
                                 {seats.map(({ id, rowLabel, number, price }) => (
                                     /* Every row here is selected by definition, so being
