@@ -25,6 +25,18 @@ by section, with ~30% pre-sold.
 Other scripts: `npm run build` (typechecks, then builds), `npm run lint`,
 `npm run preview`.
 
+## How does it work?
+- It is pretty straight forward and you can sort of see it like a game.
+- Start by selecting a seat that you want.
+- You will know which seat that you've selected based on the color of the seat and also the information you get at the sidebar.
+- After you have selected a seat, the simulation starts.
+- You will see other seats gradually being taken by your rival (in other words, customers).
+- Then you'll reach a point where your seats are being taken by your rival.
+- In this case, you have to unselect your seat (that is being taken) and select new ones.
+- Once you've selected your seats, then you have to click on "Checkout".
+- That's where you lock in your seats and this is where the flow ends.
+- Feel free to start all over again by clicking on the "Reset" button.
+
 
 ## Layout
 
@@ -68,7 +80,7 @@ src/
 - DOM keeps real accessibility within reach, and was the fastest to build.
   (Seats are still `<div>`s today, so keyboard and screen reader support isn't
   actually wired up yet)
-- Would switch to SVG for pan/zoom, or for a venue that isn't a simple grid and if I'd have more    time.
+- Would switch to SVG for pan/zoom, or for a venue that isn't a simple grid and if I'd have more time.
 - Picked DOM, as it is much faster to start and I'm more familiar with it.
 
 **Real-time updates.**
